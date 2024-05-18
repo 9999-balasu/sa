@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #card{
+            display: flex;
+            flex-wrap: wrap;
+            border: 100px solid forestgreen;
+        }
+        #cards{
+            width: 400px;
+            height: 650px;
+            border: 20px solid lightslategrey;
+            border-radius: 5px;
+            margin: 10px;
+            margin-right: 50px;
+            margin-left: 20px;
+            box-shadow: 10px 10px 5px greenyellow;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    
+    <script>
+fetch('https://fakestoreapi.com/products/').then((data)=>{
+    console.log(data);
+    return data.json();
+}).then((fullData)=>{
+    console.log(fullData);
+   let myData="";
+
+   fullData.map((val)=>{
+    myData += `
+        <div id="cards">
+            
+<img src=${val.image} width="200px" hight="200px"/>
+<div class="card-body">
+    <h5>${val.title}</h5>
+    <p>${val.description}</p>
+    <p>${val.price}</p>
+   
+    <p>${val.rating}</p>
+</div>
+        </div>
+    `
+    
+   })
+   
+  
+  
+   
+   document.getElementById("card").innerHTML=myData;
+   
+})
+           
+var rootElement=document.createElement('div');
+   document.body.appendChild(rootElement);
+   rootElement.id="card";
+
+   
+
+  
+    </script>
+</body>
+</html>
